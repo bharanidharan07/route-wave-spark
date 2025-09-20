@@ -1,9 +1,10 @@
 const CACHE_NAME = 'ordering-pwa-v1';
 const urlsToCache = [
   '/',
-  '/static/js/bundle.js',
-  '/static/css/main.css',
-  '/manifest.json'
+  '/manifest.json',
+  '/icons/icon-192x192.png',
+  '/icons/icon-512x512.png',
+  // Add other static assets as needed
 ];
 
 // Install service worker
