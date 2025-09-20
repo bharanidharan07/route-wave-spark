@@ -14,14 +14,11 @@ import { OrderScreen } from "./pages/order";
 import { FeedbackScreen } from "./pages/feedback";
 import NotFound from "./pages/NotFound";
 
-// Types
-import { type User, type Product } from "./services/api";
-
 const queryClient = new QueryClient();
 
 const App = () => {
-  const [user, setUser] = useState<User | null>(null);
-  const [cart, setCart] = useState<Product[]>([]);
+  const [user, setUser] = useState(null);
+  const [cart, setCart] = useState([]);
 
   // Service Worker Registration for PWA
   useEffect(() => {
@@ -38,7 +35,7 @@ const App = () => {
     }
   }, []);
 
-  const handleUserLogin = (userData: User) => {
+  const handleUserLogin = (userData) => {
     setUser(userData);
   };
 
@@ -47,7 +44,7 @@ const App = () => {
     setCart([]);
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product) => {
     setCart(prevCart => [...prevCart, product]);
   };
 

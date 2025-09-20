@@ -7,7 +7,7 @@ import { Truck, Package } from 'lucide-react';
 export const DeliveryScreen = () => {
   const navigate = useNavigate();
 
-  const handleDeliveryChoice = (type: 'Pickup' | 'Freight Forward') => {
+  const handleDeliveryChoice = (type) => {
     // Store delivery choice in localStorage or state
     localStorage.setItem('deliveryType', type);
     navigate('/order');

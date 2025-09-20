@@ -1,36 +1,11 @@
 // Mock API Service for PWA Ordering App
 
-export interface User {
-  email: string;
-  name: string;
-}
-
-export interface Product {
-  id: number;
-  name: string;
-  category: 'Wholesale' | 'Simple' | 'Swatch';
-  price: number;
-  description: string;
-}
-
-export interface Order {
-  items: Product[];
-  deliveryType?: 'Pickup' | 'Freight Forward';
-  total?: number;
-}
-
-export interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  message?: string;
-}
-
 // Simulated API delays for realistic experience
-const simulateDelay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+const simulateDelay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const api = {
   // Authentication
-  login: async (email: string, password: string): Promise<ApiResponse<User>> => {
+  login: async (email, password) => {
     console.log("API: Attempting login for", email);
     await simulateDelay(1000);
     return { 
@@ -39,7 +14,7 @@ export const api = {
     };
   },
 
-  signup: async (email: string, password: string): Promise<ApiResponse<User>> => {
+  signup: async (email, password) => {
     console.log("API: Attempting signup for", email);
     await simulateDelay(1000);
     return { 
@@ -49,7 +24,7 @@ export const api = {
   },
 
   // Products
-  getProducts: async (): Promise<Product[]> => {
+  getProducts: async () => {
     console.log("API: Fetching products");
     await simulateDelay(1000);
     return [
@@ -99,7 +74,7 @@ export const api = {
   },
 
   // Orders
-  placeOrder: async (order: Order): Promise<ApiResponse<{ orderId: number }>> => {
+  placeOrder: async (order) => {
     console.log("API: Placing order", order);
     await simulateDelay(1500);
     return { 
@@ -109,7 +84,7 @@ export const api = {
   },
 
   // Feedback
-  submitFeedback: async (feedback: 'good' | 'ok' | 'bad'): Promise<ApiResponse<void>> => {
+  submitFeedback: async (feedback) => {
     console.log("API: Submitting feedback", feedback);
     await simulateDelay(500);
     return { success: true };

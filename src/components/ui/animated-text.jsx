@@ -1,11 +1,6 @@
 import { useMemo } from 'react';
 
-interface AnimatedTextProps {
-  text: string;
-  className?: string;
-}
-
-export const AnimatedText = ({ text, className = '' }: AnimatedTextProps) => {
+export const AnimatedText = ({ text, className = '' }) => {
   const letters = useMemo(() => text.split(''), [text]);
   
   return (

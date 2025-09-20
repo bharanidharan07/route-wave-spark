@@ -5,22 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { api, type User, type Product } from '@/services/api';
+import { api } from '@/services/api';
 import { Search, ShoppingCart, LogOut, Camera } from 'lucide-react';
 
-interface DashboardProps {
-  user: User;
-  cart: Product[];
-  onAddToCart: (product: Product) => void;
-  onLogout: () => void;
-}
-
-export const DashboardScreen = ({ user, cart, onAddToCart, onLogout }: DashboardProps) => {
+export const DashboardScreen = ({ user, cart, onAddToCart, onLogout }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [products, setProducts] = useState<Product[]>([]);
+  const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filter, setFilter] = useState<'All' | 'Wholesale' | 'Simple' | 'Swatch'>('All');
+  const [filter, setFilter] = useState('All');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,7 +34,7 @@ export const DashboardScreen = ({ user, cart, onAddToCart, onLogout }: Dashboard
     fetchProducts();
   }, [toast]);
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = (product) => {
     onAddToCart(product);
     toast({
       title: "Added to Cart",
@@ -54,7 +47,7 @@ export const DashboardScreen = ({ user, cart, onAddToCart, onLogout }: Dashboard
     (filter === 'All' || p.category === filter)
   );
 
-  const getCategoryColor = (category: Product['category']) => {
+  const getCategoryColor = (category) => {
     switch (category) {
       case 'Wholesale': return 'bg-secondary text-secondary-foreground';
       case 'Simple': return 'bg-success text-success-foreground';
@@ -98,7 +91,7 @@ export const DashboardScreen = ({ user, cart, onAddToCart, onLogout }: Dashboard
         </div>
         
         <div className="flex flex-wrap gap-2">
-          {(['All', 'Wholesale', 'Simple', 'Swatch'] as const).map((f) => (
+          {['All', 'Wholesale', 'Simple', 'Swatch'].map((f) => (
             <Button
               key={f}
               variant={filter === f ? "default" : "outline"}

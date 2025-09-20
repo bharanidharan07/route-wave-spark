@@ -1,11 +1,4 @@
-import { ReactNode, HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
-
-interface AppCardProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  hover?: boolean;
-  glass?: boolean;
-}
 
 export const AppCard = ({ 
   children, 
@@ -13,7 +6,7 @@ export const AppCard = ({
   hover = false, 
   glass = false,
   ...props
-}: AppCardProps) => {
+}) => {
   return (
     <div 
       className={cn(

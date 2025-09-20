@@ -11,7 +11,7 @@ export const FeedbackScreen = () => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
 
-  const handleFeedback = async (feedback: 'good' | 'ok' | 'bad') => {
+  const handleFeedback = async (feedback) => {
     setSubmitting(true);
     
     try {

@@ -5,20 +5,15 @@ import { AppCard } from '@/components/ui/app-card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { api, type Product } from '@/services/api';
+import { api } from '@/services/api';
 import { ArrowLeft } from 'lucide-react';
 
-interface OrderScreenProps {
-  cart: Product[];
-  onClearCart: () => void;
-}
-
-export const OrderScreen = ({ cart, onClearCart }: OrderScreenProps) => {
+export const OrderScreen = ({ cart, onClearCart }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [placingOrder, setPlacingOrder] = useState(false);
 
-  const deliveryType = localStorage.getItem('deliveryType') as 'Pickup' | 'Freight Forward' || 'Pickup';
+  const deliveryType = localStorage.getItem('deliveryType') || 'Pickup';
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
 
   const handlePlaceOrder = async () => {

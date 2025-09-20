@@ -6,13 +6,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
-import { api, type User } from '@/services/api';
+import { api } from '@/services/api';
 
-interface AuthScreenProps {
-  onUserLogin: (user: User) => void;
-}
-
-export const AuthScreen = ({ onUserLogin }: AuthScreenProps) => {
+export const AuthScreen = ({ onUserLogin }) => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLogin, setIsLogin] = useState(true);
@@ -20,7 +16,7 @@ export const AuthScreen = ({ onUserLogin }: AuthScreenProps) => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     
